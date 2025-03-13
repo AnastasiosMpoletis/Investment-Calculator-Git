@@ -1,2 +1,2 @@
 # Investment-Calculator-Git
-Investment Calculator Web App from Udemy course: React - The Complete Guide 2025 (incl. Next.js, Redux)
+Investment Calculator Web App from Udemy course: React - The Complete Guide 2025 (incl. Next.js, Redux), Section 5.
