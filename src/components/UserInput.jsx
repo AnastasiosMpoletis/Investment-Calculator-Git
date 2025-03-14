@@ -23,7 +23,7 @@ export default function UserInput() {
     }
 
     return (
-        <div className="user-input">
+        <div id="user-input">
             <Group>
                 <>
                     <Field label={FIELDS_LABELS[0]} />

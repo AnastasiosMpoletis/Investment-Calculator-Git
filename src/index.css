@@ -19,7 +19,6 @@ header {
   margin: 3rem auto;
 }
 
-
 header img {
   width: 5rem;
   height: 5rem;
@@ -31,7 +30,7 @@ header h1 {
   font-size: 1.5rem;
 }
 
-.user-input {
+#user-input {
   padding: 1rem;
   max-width: 30rem;
   margin: 2rem auto;
@@ -45,7 +44,7 @@ header h1 {
   gap: 1.5rem;
 }
 
-.user-input label {
+#user-input label {
   display: block;
   margin-bottom: 0.25rem;
   font-family: 'Roboto Condensed', sans-serif;
@@ -54,7 +53,7 @@ header h1 {
   text-transform: uppercase;
 }
 
-.user-input input {
+#user-input input {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #76c0ae;
