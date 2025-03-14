@@ -13,13 +13,20 @@ export default function UserInput() {
         );
     }
 
-    function Field({ label }) {
+    function Field({ label, onChangeDuration = undefined }) {
         return (
             <div>
                 <label>{label}</label>
-                <input type="number"></input>
+                <input type="number" required onChange={onChangeDuration}></input>
             </div>
         );
+    }
+
+    function handleDurationChange(event) {
+        if (event.target.value < 1) {
+            alert("Duration cannot be negative");
+            event.target.value = 1;
+        }
     }
 
     return (
@@ -33,7 +40,7 @@ export default function UserInput() {
             <Group>
                 <>
                     <Field label={FIELDS_LABELS[2]} />
-                    <Field label={FIELDS_LABELS[3]} />
+                    <Field label={FIELDS_LABELS[3]} onChangeDuration={handleDurationChange}/>
                 </>
             </Group>
         </div>
