@@ -1,6 +1,3 @@
-export const FIELDS_LABELS = ["Initial Investment", "Annual Investment", "Expected Return", "Duration"];
-export const RESULT_COLUMNS = ["Year", "Investment Value", "Interest (Year)", "Total Interest", "Invested Capital"];
-
 // This function expects a JS object as an argument
 // The object should contain the following properties
 // - initialInvestment: The initial investment amount
