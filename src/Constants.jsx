@@ -23,3 +23,12 @@ export const INITIAL_INVESTMENTS =
         inputLabel: "Duration"
     }
 };
+
+export function deriveInvestmentValues(investments) {
+    return {
+        initialInvestment: investments.initialInvestment.inputValue,
+        annualInvestment: investments.annualInvestment.inputValue,
+        expectedReturn: investments.expectedReturn.inputValue,
+        duration: investments.duration.inputValue
+    }
+}

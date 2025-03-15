@@ -21,15 +21,15 @@ export default function UserInput({ investments, onInputChange }) {
      */
     function Field({ inputId, inputValue, inputLabel }) {
         return (
-            <div>
+            <p>
                 <label>{inputLabel}</label>
-                <input id={inputId} type="number" required onChange={onInputChange} value={inputValue}></input>
-            </div>
+                <input id={inputId} type="number" required onChange={onInputChange} value={inputValue} />
+            </p>
         );
     }
 
     return (
-        <div id="user-input">
+        <section id="user-input">
             <Group>
                 <>
                     <Field {...investments["initialInvestment"]} />
@@ -42,6 +42,6 @@ export default function UserInput({ investments, onInputChange }) {
                     <Field {...investments["duration"]} />
                 </>
             </Group>
-        </div>
+        </section>
     );
 }

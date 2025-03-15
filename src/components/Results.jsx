@@ -1,12 +1,15 @@
 import { RESULT_COLUMNS } from "../Constants.jsx";
+import { deriveInvestmentValues } from "../Constants.jsx";
+import { formatter } from "../util/investment.js";
+import { calculateInvestmentResults } from "../util/investment.js";
 
 /**
  * @returns Results component
  */
 export default function Results({ investments }) {
-    console.log("Results: " + JSON.stringify(investments));
-    //TODO ANBOL add logic from investment.js and display results
-    //TODO ANBOL add currency formatter
+    const investmentValues = deriveInvestmentValues(investments)
+    const results = calculateInvestmentResults(investmentValues);
+    console.log("Results: " + JSON.stringify(results));
     return (
         <table id="result">
             <thead>
@@ -17,15 +20,13 @@ export default function Results({ investments }) {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{investments.duration.inputValue}</td>
-                    <td>{investments.annualInvestment.inputValue}</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                    <td>$1,000</td>
-                </tr>
-
+                {results.map((investment) => (
+                    <tr key={investment.year}>
+                        <td>{investment.year}</td>
+                        <td>{formatter.format(investment.annualInvestment)}</td>
+                    </tr>
+                ))}
             </tbody>
-        </table>
+        </table >
     );
 }
