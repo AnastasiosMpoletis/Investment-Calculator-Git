@@ -1,51 +1,68 @@
+import { useState } from "react";
+
 /**
  * @returns UserInput component
  */
-export default function UserInput({ investment, onInputChange }) {
+export default function UserInput() {
+
+    const [userInput, setUserInput] = useState({
+        initialInvestment: 10000,
+        annualInvestment: 1200,
+        expectedReturn: 6,
+        duration: 10
+    });
+
+    /**
+     * Handles input changes.
+     * Notice the event parameter for the custom onChange function in input.
+     * 
+     * @param {*} inputIdentifier 
+     * @param {*} newValue 
+     */
+    function handleChange(inputIdentifier, newValue) {
+        setUserInput((previousUserInput) => {
+            return {
+                ...previousUserInput,
+                [inputIdentifier]: newValue
+            };
+        });
+    }
+
     return (
         <section id="user-input">
             <div className="input-group">
                 <p>
-                    <label>{investment.initialInvestment.inputLabel}</label>
+                    <label>Initial Investment</label>
                     <input
-                        id={investment.initialInvestment.inputId}
                         type="number" required
-                        onChange={onInputChange}
-                        placeholder={investment.initialInvestment.inputValue}
-                        // min="0"
+                        value={userInput.initialInvestment}
+                        onChange={(event) => handleChange("initialInvestment", event.target.value)}
                     />
                 </p>
                 <p>
-                    <label>{investment.annualInvestment.inputLabel}</label>
+                    <label>Annual Investment</label>
                     <input
-                        id={investment.annualInvestment.inputId}
-                        type="number"
-                        required
-                        onChange={onInputChange}
-                        placeholder={investment.annualInvestment.inputValue}
-                        // min="0"
+                        type="number" required
+                        value={userInput.annualInvestment}
+                        onChange={(event) => handleChange("annualInvestment", event.target.value)}
                     />
                 </p>
             </div>
             <div className="input-group">
                 <p>
-                    <label>{investment.expectedReturn.inputLabel}</label>
+                    <label>Expected Return</label>
                     <input
-                        id={investment.expectedReturn.inputId}
                         type="number" required
-                        onChange={onInputChange}
-                        placeholder={investment.expectedReturn.inputValue}
-                        // min="0"
+                        value={userInput.expectedReturn}
+                        onChange={(event) => handleChange("expectedReturn", event.target.value)}
                     />
                 </p>
                 <p>
-                    <label>{investment.duration.inputLabel}</label>
+                    <label>Duration</label>
                     <input
-                        id={investment.duration.inputId}
                         type="number" required
-                        onChange={onInputChange}
-                        placeholder={investment.duration.inputValue}
-                        // min="1"
+                        value={userInput.duration}
+                        onChange={(event) => handleChange("duration", event.target.value)}
                     />
                 </p>
             </div>

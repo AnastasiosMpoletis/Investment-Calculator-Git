@@ -1,5 +1,8 @@
 import logo from "../assets/investment-calculator-logo.png";
 
+/**
+ * @returns Header component
+ */
 export default function Header() {
     return (
         <header id="header">
