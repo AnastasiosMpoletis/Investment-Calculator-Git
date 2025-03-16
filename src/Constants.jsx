@@ -1,5 +1,11 @@
+/**
+ * @deprecated
+ */
 export const INVESTMENT_TABLE_COLUMNS = ["Year", "Investment Value", "Interest (Year)", "Total Interest", "Invested Capital"];
 
+/**
+ * @deprecated
+ */
 export const INITIAL_INVESTMENTS =
 {
     initialInvestment: {

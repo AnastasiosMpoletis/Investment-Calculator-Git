@@ -4,7 +4,6 @@
 // - annualInvestment: The amount invested every year
 // - expectedReturn: The expected (annual) rate of return
 // - duration: The investment duration (time frame)
-// ANBOL edited the calculation to match the example from Lecture 96. Original functionality is below, commented out.
 export function calculateInvestmentResults({
   initialInvestment,
   annualInvestment,
@@ -13,47 +12,20 @@ export function calculateInvestmentResults({
 }) {
   const annualData = [];
   let investmentValue = initialInvestment;
-  let totalInterest = 0;
 
   for (let i = 0; i < duration; i++) {
     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
-    investmentValue = Number(investmentValue) + interestEarnedInYear + Number(annualInvestment);
-    totalInterest += interestEarnedInYear;
-    const annualDataObj = {
+    investmentValue += interestEarnedInYear + annualInvestment;
+    annualData.push({
       year: i + 1, // year identifier
-      tableDataInvestmentValue: investmentValue,  // investment value at end of year
-      tableDataInterestYear: interestEarnedInYear, // the amount of interest earned in this year
-      tableDataTotalInterest: totalInterest, 
-      tableDataInvestedCapital: investmentValue - totalInterest
-    };
-    annualData.push(annualDataObj);
+      interest: interestEarnedInYear, // the amount of interest earned in this year
+      valueEndOfYear: investmentValue, // investment value at end of year
+      annualInvestment: annualInvestment, // investment added in this year
+    });
   }
 
   return annualData;
 }
-
-// export function calculateInvestmentResults({
-//   initialInvestment,
-//   annualInvestment,
-//   expectedReturn,
-//   duration,
-// }) {
-//   const annualData = [];
-//   let investmentValue = initialInvestment;
-
-//   for (let i = 0; i < duration; i++) {
-//     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
-//     investmentValue += interestEarnedInYear + annualInvestment;
-//     annualData.push({
-//       year: i + 1, // year identifier
-//       interest: interestEarnedInYear, // the amount of interest earned in this year
-//       valueEndOfYear: investmentValue, // investment value at end of year
-//       annualInvestment: annualInvestment, // investment added in this year
-//     });
-//   }
-
-//   return annualData;
-// }
 
 // The browser-provided Intl API is used to prepare a formatter object
 // This object offers a "format()" method that can be used to format numbers as currency
