@@ -1,50 +1,50 @@
 /**
  * @returns UserInput component
  */
-export default function UserInput({ investments, onInputChange }) {
+export default function UserInput({ investment, onInputChange }) {
     return (
         <section id="user-input">
             <div className="input-group">
                 <p>
-                    <label>{investments.initialInvestment.inputLabel}</label>
+                    <label>{investment.initialInvestment.inputLabel}</label>
                     <input
-                        id={investments.initialInvestment.inputId}
+                        id={investment.initialInvestment.inputId}
                         type="number" required
                         onChange={onInputChange}
-                        placeholder={investments.initialInvestment.inputValue}
+                        placeholder={investment.initialInvestment.inputValue}
                         // min="0"
                     />
                 </p>
                 <p>
-                    <label>{investments.annualInvestment.inputLabel}</label>
+                    <label>{investment.annualInvestment.inputLabel}</label>
                     <input
-                        id={investments.annualInvestment.inputId}
+                        id={investment.annualInvestment.inputId}
                         type="number"
                         required
                         onChange={onInputChange}
-                        placeholder={investments.annualInvestment.inputValue}
+                        placeholder={investment.annualInvestment.inputValue}
                         // min="0"
                     />
                 </p>
             </div>
             <div className="input-group">
                 <p>
-                    <label>{investments.expectedReturn.inputLabel}</label>
+                    <label>{investment.expectedReturn.inputLabel}</label>
                     <input
-                        id={investments.expectedReturn.inputId}
+                        id={investment.expectedReturn.inputId}
                         type="number" required
                         onChange={onInputChange}
-                        placeholder={investments.expectedReturn.inputValue}
+                        placeholder={investment.expectedReturn.inputValue}
                         // min="0"
                     />
                 </p>
                 <p>
-                    <label>{investments.duration.inputLabel}</label>
+                    <label>{investment.duration.inputLabel}</label>
                     <input
-                        id={investments.duration.inputId}
+                        id={investment.duration.inputId}
                         type="number" required
                         onChange={onInputChange}
-                        placeholder={investments.duration.inputValue}
+                        placeholder={investment.duration.inputValue}
                         // min="1"
                     />
                 </p>

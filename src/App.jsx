@@ -11,20 +11,24 @@ function displayErrorMessage(label) {
 function App() {
   const [investment, setInvestment] = useState(INITIAL_INVESTMENTS);
   
+  /**
+   * Input fields changeHandler. 
+   * Checks for input limits and updates investment state with new values.
+   * @param {*} event 
+   */
   function onInputChange(event) {
     const durationLimit = 1;
     const fieldLimit = 0;
     
-    if (event.target.id === "duration" && event.target.value < durationLimit) {
+    if (event.target.id === investment[event.target.id] && event.target.value < durationLimit) {
       displayErrorMessage(investment[event.target.id].inputLabel);
       event.target.value = durationLimit;
     } else if (event.target.value < fieldLimit) {
       displayErrorMessage(investment[event.target.id].inputLabel);
       event.target.value = fieldLimit;
     } else {
-      // Update the state with new values
       setInvestment((previousInvestment) => {
-        const updatedInv = {
+        const updatedInvestment = {
           ...previousInvestment,
           [event.target.id]: {
             ...previousInvestment[event.target.id],
@@ -32,15 +36,15 @@ function App() {
           }
         };
 
-        return updatedInv;
+        return updatedInvestment;
       });
     }
   }
 
   return (
     <>
-      <UserInput investments={investment} onInputChange={onInputChange} />
-      <Results investments={investment}/>
+      <UserInput investment={investment} onInputChange={onInputChange} />
+      <Results investment={investment}/>
     </>
   )
 }

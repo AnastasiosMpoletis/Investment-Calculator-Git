@@ -1,30 +1,47 @@
-import { RESULT_COLUMNS } from "../Constants.jsx";
+import { INVESTMENT_TABLE_COLUMNS } from "../Constants.jsx";
+import { calculateInvestmentResults, formatter } from "../util/investment.js";
+
+/**
+ * @param {*} investment 
+ * @returns an object with values of investment, suitable for calculation.
+ */
+function deriveInvestmentValues(investment) {
+    return {
+        initialInvestment: investment.initialInvestment.inputValue,
+        annualInvestment: investment.annualInvestment.inputValue,
+        expectedReturn: investment.expectedReturn.inputValue,
+        duration: investment.duration.inputValue
+    }
+}
 
 /**
  * @returns Results component
  */
-export default function Results({ investments }) {
-    console.log("Results: " + JSON.stringify(investments));
-    //TODO ANBOL add logic from investment.js and display results
-    //TODO ANBOL add currency formatter
+export default function Results({ investment }) {
+    // Calculate table data
+    const tableDataValues = calculateInvestmentResults(deriveInvestmentValues(investment));
+
     return (
         <table id="result">
             <thead>
                 <tr>
-                    {RESULT_COLUMNS.map((column, index) => {
+                    {/* Add columns */}
+                    {INVESTMENT_TABLE_COLUMNS.map((column, index) => {
                         return <th key={index}>{column}</th>;
                     })}
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{investments.duration.inputValue}</td>
-                    <td>{investments.annualInvestment.inputValue}</td>
-                    <td>$100</td>
-                    <td>$100</td>
-                    <td>$1,000</td>
-                </tr>
-
+                {/* Add table data */}
+                {tableDataValues.map((annualDataObj) => (
+                    <tr key={annualDataObj.year}>
+                        <td>{annualDataObj.year}</td>
+                        <td>{formatter.format(annualDataObj.tableDataInvestmentValue)}</td>
+                        <td>{formatter.format(annualDataObj.tableDataInterestYear)}</td>
+                        <td>{formatter.format(annualDataObj.tableDataTotalInterest)}</td>
+                        <td>{formatter.format(annualDataObj.tableDataInvestedCapital)}</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
     );
