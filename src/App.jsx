@@ -23,7 +23,11 @@ function App() {
     setUserInput((previousUserInput) => {
       return {
         ...previousUserInput,
-        [inputIdentifier]: newValue
+        /**
+         * !!!!!Input fields values are always extracted as strings!!!!!
+         * By adding the '+' character below, we convert the input to a number so that the calculation is properly done.
+         */
+        [inputIdentifier]: +newValue
       };
     });
   }
