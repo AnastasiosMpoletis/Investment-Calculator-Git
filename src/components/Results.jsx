@@ -20,6 +20,7 @@ function deriveInvestmentValues(investment) {
 export default function Results({ investment }) {
     // Calculate table data
     const tableDataValues = calculateInvestmentResults(deriveInvestmentValues(investment));
+    const initialInvestment = tableDataValues[0].valueEndOfYear - tableDataValues[0].interest - tableDataValues[0].annualInvestment;
 
     return (
         <table id="result">
@@ -33,15 +34,20 @@ export default function Results({ investment }) {
             </thead>
             <tbody>
                 {/* Add table data */}
-                {tableDataValues.map((annualDataObj) => (
-                    <tr key={annualDataObj.year}>
-                        <td>{annualDataObj.year}</td>
-                        <td>{formatter.format(annualDataObj.tableDataInvestmentValue)}</td>
-                        <td>{formatter.format(annualDataObj.tableDataInterestYear)}</td>
-                        <td>{formatter.format(annualDataObj.tableDataTotalInterest)}</td>
-                        <td>{formatter.format(annualDataObj.tableDataInvestedCapital)}</td>
-                    </tr>
-                ))}
+                {tableDataValues.map((annualDataObj) => {
+                    const totalInterest = annualDataObj.valueEndOfYear - annualDataObj.annualInvestment * annualDataObj.year - initialInvestment;
+                    const totalAmountInvested = annualDataObj.valueEndOfYear - totalInterest;
+
+                    return (
+                        <tr key={annualDataObj.year}>
+                            <td>{annualDataObj.year}</td>
+                            <td>{formatter.format(annualDataObj.valueEndOfYear)}</td>
+                            <td>{formatter.format(annualDataObj.interest)}</td>
+                            <td>{formatter.format(totalInterest)}</td>
+                            <td>{formatter.format(totalAmountInvested)}</td>
+                        </tr>
+                    );
+                })}
             </tbody>
         </table>
     );

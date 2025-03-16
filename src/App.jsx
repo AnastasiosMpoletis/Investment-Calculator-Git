@@ -4,46 +4,41 @@ import UserInput from "./components/UserInput.jsx"
 import Results from "./components/Results.jsx"
 import { INITIAL_INVESTMENTS } from "./Constants.jsx";
 
-function displayErrorMessage(label) {
-  alert(`${label} cannot be negative.`);
-}
-
 function App() {
   const [investment, setInvestment] = useState(INITIAL_INVESTMENTS);
 
+  // Duration check
+  const isInputValid = investment.duration.inputValue >= 1;
+
   /**
-   * Input fields changeHandler. 
-   * Checks for input limits and updates investment state with new values.
+   * Input fields changeHandler that updates investment state with new values.
    * @param {*} event 
    */
   function onInputChange(event) {
-    const durationLimit = 1;
-    const fieldLimit = 0;
-    if (event.target.id === investment.duration.inputId && event.target.value < durationLimit) {
-      displayErrorMessage(investment[event.target.id].inputLabel);
-      event.target.value = durationLimit;
-    } else if (event.target.value < fieldLimit) {
-      displayErrorMessage(investment[event.target.id].inputLabel);
-      event.target.value = fieldLimit;
-    } else {
-      setInvestment((previousInvestment) => {
-        const updatedInvestment = {
-          ...previousInvestment,
-          [event.target.id]: {
-            ...previousInvestment[event.target.id],
-            inputValue: event.target.value
-          }
-        };
+    setInvestment((previousInvestment) => {
+      const updatedInvestment = {
+        ...previousInvestment,
+        [event.target.id]: {
+          ...previousInvestment[event.target.id],
+          /**
+           * !!!!!Input fields values are always extracted as strings!!!!!
+           * By adding the '+' character below, we convert the input to a number so that the calculation is properly done.
+           */
+          inputValue: +event.target.value
+        }
+      };
 
-        return updatedInvestment;
-      });
-    }
+      return updatedInvestment;
+    });
   }
 
   return (
     <>
       <UserInput investment={investment} onInputChange={onInputChange} />
-      <Results investment={investment} />
+      {isInputValid ?
+        <Results investment={investment} /> :
+        <p className="center">Please enter a duration greater than zero.</p>
+      }
     </>
   )
 }
