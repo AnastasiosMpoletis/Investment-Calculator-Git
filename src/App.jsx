@@ -4,25 +4,6 @@ import UserInput from "./components/UserInput.jsx"
 import Results from "./components/Results.jsx"
 import { INITIAL_INVESTMENTS } from "./Constants.jsx";
 
-/**
- * @deprecated
- * @param {@} param0 
- * @returns 
- */
-function deriveInvestmentData({
-  initialInvestment,
-  annualInvestment,
-  expectedReturn,
-  duration,
-}) {
-  let investments = { ...INITIAL_INVESTMENTS };
-  investments["initialInvestment"].inputValue = initialInvestment != undefined ? initialInvestment : investments["initialInvestment"].inputValue;
-  investments["annualInvestment"].inputValue = annualInvestment != undefined ? annualInvestment : investments["annualInvestment"].inputValue;
-  investments["expectedReturn"].inputValue = expectedReturn != undefined ? expectedReturn : investments["expectedReturn"].inputValue;
-  investments["duration"].inputValue = duration != undefined ? duration : investments["duration"].inputValue;
-  return investments;
-}
-
 function displayErrorMessage(label) {
   alert(`${label} cannot be negative.`);
 }

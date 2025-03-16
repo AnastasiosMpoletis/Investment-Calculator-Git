@@ -2,46 +2,53 @@
  * @returns UserInput component
  */
 export default function UserInput({ investments, onInputChange }) {
-
-    /**
-     * @param {*} param0 
-     * @returns Group of fields to match css.
-     */
-    function Group({ children }) {
-        return (
-            <div className="input-group">
-                {children}
-            </div>
-        );
-    }
-
-    /**
-     * @param {*} param0 
-     * @returns Field with label and input, to match tcss.
-     */
-    function Field({ inputId, inputValue, inputLabel }) {
-        return (
-            <div>
-                <label>{inputLabel}</label>
-                <input id={inputId} type="number" required onChange={onInputChange} value={inputValue}></input>
-            </div>
-        );
-    }
-
     return (
-        <div id="user-input">
-            <Group>
-                <>
-                    <Field {...investments["initialInvestment"]} />
-                    <Field {...investments["annualInvestment"]} />
-                </>
-            </Group>
-            <Group>
-                <>
-                    <Field {...investments["expectedReturn"]} />
-                    <Field {...investments["duration"]} />
-                </>
-            </Group>
-        </div>
+        <section id="user-input">
+            <div className="input-group">
+                <p>
+                    <label>{investments.initialInvestment.inputLabel}</label>
+                    <input
+                        id={investments.initialInvestment.inputId}
+                        type="number" required
+                        onChange={onInputChange}
+                        placeholder={investments.initialInvestment.inputValue}
+                        // min="0"
+                    />
+                </p>
+                <p>
+                    <label>{investments.annualInvestment.inputLabel}</label>
+                    <input
+                        id={investments.annualInvestment.inputId}
+                        type="number"
+                        required
+                        onChange={onInputChange}
+                        placeholder={investments.annualInvestment.inputValue}
+                        // min="0"
+                    />
+                </p>
+            </div>
+            <div className="input-group">
+                <p>
+                    <label>{investments.expectedReturn.inputLabel}</label>
+                    <input
+                        id={investments.expectedReturn.inputId}
+                        type="number" required
+                        onChange={onInputChange}
+                        placeholder={investments.expectedReturn.inputValue}
+                        // min="0"
+                    />
+                </p>
+                <p>
+                    <label>{investments.duration.inputLabel}</label>
+                    <input
+                        id={investments.duration.inputId}
+                        type="number" required
+                        onChange={onInputChange}
+                        placeholder={investments.duration.inputValue}
+                        // min="1"
+                    />
+                </p>
+            </div>
+        </section>
     );
 }
